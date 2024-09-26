@@ -9,7 +9,7 @@ class Database:
 
     async def add_user(self, id):
         if not await self.is_present(id):
-            await self.coll.insert_one(dict(id=id, api=None, shortner=None))
+            await self.coll.insert_one(dict(id=id, api=None, shortner=BASE_URL))
 
     async def is_present(self, id):
         return bool(await self.coll.find_one({'id': int(id)}))
