@@ -1,90 +1,113 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from configs import *
 
-
 @Client.on_callback_query()
-async def callback(bot, query):
+async def callback(bot: Client, query):
     me = await bot.get_me()
     data = query.data
     msg = query.message
 
-    if data == "delete":
-        await msg.delete()
-        try:
-            await msg.reply_to_message.delete()
-        except:
-            pass
+    try:
+        if data == "delete":
+            await msg.delete()
+            # Attempt to delete the replied message, if it exists
+            if msg.reply_to_message:
+                await msg.reply_to_message.delete()
 
-    elif data == "help":
-        await msg.edit(
-            HELP_TXT.format(me.mention),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Sᴇᴛ Sʜᴏʀᴛɴᴇʀ ༆", callback_data="set_shortner"),
-                     InlineKeyboardButton("Aʙᴏᴜᴛ ★", callback_data="about")],     
-                    [InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ⌘", url="https://t.me/tamilanbotsz_support")],
-                    [InlineKeyboardButton("Rᴇᴘᴏ 🛠", url="https://github.com/TamilanBotsZ/TB_ShortLink_Convertor"),
-                     InlineKeyboardButton("Bᴀᴄᴋ ✰", callback_data="start")]
-                ]
-            )
-        )
-      
-    elif data == "about":
-        await msg.edit(
-            ABOUT_TXT.format(me.mention),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Uᴘᴅᴀᴛᴇs 🙌", url="https://t.me/tamilan_botsz"),
-                     InlineKeyboardButton("Dᴇᴠᴇʟᴏᴘᴇʀ ⚡", url="https://t.me/sharathitsisme")],
-                    [InlineKeyboardButton("Hᴇʟᴩ Mᴇɴᴜ ⁂", callback_data="help"),
-                     InlineKeyboardButton("Eᴀʀɴ Mᴏɴᴇʏ ♕", callback_data="earn_money")],
-                    [InlineKeyboardButton("Rᴇᴘᴏ 🛠", url="https://github.com/TamilanBotsZ/TB_ShortLink_Convertor")],
-                    [InlineKeyboardButton("Bᴀᴄᴋ 𖦹", callback_data="start")]
-                ]
-            )
-        )
-
-    elif data == "set_shortner":
-        await msg.edit("Send shortner URL & API along with the command.\n\nEx: <code>/set_shortner example.com api</code></b>",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Hᴇʟᴩ Mᴇɴᴜ 🙌", callback_data="help"),
-                     InlineKeyboardButton("Eᴀʀɴ Mᴏɴᴇʏ 🕊️", callback_data="earn_money")],
-                    [InlineKeyboardButton("Bᴀᴄᴋ ✌", callback_data="help"),                     
-                     InlineKeyboardButton("Rᴇᴘᴏ 🛠", url="https://github.com/TamilanBotsZ/TB_ShortLink_Convertor")]
-                ]
-            )
-        )
-                      
-         
-      
-    elif data == "earn_money":
-        await msg.edit("๏Yᴏᴜ ᴄᴀɴᴇᴀʀɴ ᴜsɪɴɢ ᴀɴʏ sʜᴏʀᴛɴᴇʀ sɪᴛᴇ.\n๏Sɪɢɴ ᴜᴩ ᴀɴᴅ ɢᴇɴʀᴀᴛᴇ sʜᴏʀᴛ ʟɪɴᴋs ᴀɴᴅ sʜᴀʀᴇ ᴛʜᴇᴍ ᴛᴏ ᴇᴀʀɴ ᴍᴏɴᴇʏ.",
-            reply_markup=InlineKeyboardMarkup(
-                [
+        elif data == "help":
+            await msg.edit(
+                HELP_TXT.format(me.mention),
+                reply_markup=InlineKeyboardMarkup(
                     [
-                        InlineKeyboardButton("Hᴇʟᴩ Mᴇɴᴜ 🍩", callback_data="help"),
-                        InlineKeyboardButton("Aʙᴏᴜᴛ 📍", callback_data="about")
-                    ],
-                    [
-                        InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ Gʀᴏᴜᴩ 🌛", url=f"https://t.me/tamilanbotsz_support"),
-                        InlineKeyboardButton("Bᴀᴄᴋ 💤", callback_data="start")
+                        [
+                            InlineKeyboardButton("Set Shortner", callback_data="set_shortner"),
+                            InlineKeyboardButton("About Bot", callback_data="about")
+                        ],
+                        [
+                            InlineKeyboardButton("Support Chat", url=f"https://t.me/{SUPPORT_CHAT}"),
+                        ],
+                        [
+                            InlineKeyboardButton("◀️ Back", callback_data="start")
+                        ]
                     ]
-                ]
+                )
             )
-        )
+          
+        elif data == "about":
+            await msg.edit(
+                ABOUT_TXT.format(me.mention),
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Update Channel", url=f"https://t.me/{UPDATE_CHANNEL}"),
+                            InlineKeyboardButton("Support Chat", url=f"https://t.me/{SUPPORT_CHAT}")
+                        ],
+                        [
+                            InlineKeyboardButton("Help Menu", callback_data="help"),
+                            InlineKeyboardButton("Earn Money", callback_data="earn_money")
+                        ],
+                        [
+                            InlineKeyboardButton("◀️ Back", callback_data="start")
+                        ]
+                    ]
+                )
+            )
 
-    elif data == "start":
-        await msg.edit(
-            START_TXT.format(query.from_user.mention),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Hᴇʟᴩ Mᴇɴᴜ", callback_data="help"),
-                     InlineKeyboardButton("Eᴀʀɴ Mᴏɴᴇʏ", callback_data="earn_money")],
-                    [InlineKeyboardButton("Cʜᴀɴɴᴇʟ", url=f"https://t.me/tamilan_botsz"),
-                     InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ", url=f"https://t.me/tamilanbotsz_support")],
-                    [InlineKeyboardButton("Cʟᴏsᴇ ❌", callback_data="delete")]
-                ]
+        elif data == "set_shortner":
+            await msg.edit(
+                "<blockquote><b>Send shortner API along with the command.\n\nExample:\n/set_api AAEp1Ec33BYPaHiVNZsTZWoe3U251JtuXsA</b></blockquote>",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Help Menu", callback_data="help"),
+                            InlineKeyboardButton("Earn Money", callback_data="earn_money")
+                        ],
+                        [
+                            InlineKeyboardButton("◀️ Back", callback_data="help")
+                        ]
+                    ]
+                )
             )
-        )
+
+        elif data == "earn_money":
+            await msg.edit(
+                "<blockquote><b>You can earn using any shortner site.\nSign up and generate short links and share them to earn money.</b></blockquote>",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Help Menu", callback_data="help"),
+                            InlineKeyboardButton("About Bot", callback_data="about")
+                        ],
+                        [
+                            InlineKeyboardButton("Support Chat", url=f"https://t.me/{SUPPORT_CHAT}")
+                        ],
+                        [
+                            InlineKeyboardButton("◀️ Back", callback_data="start")
+                        ]
+                    ]
+                )
+            )
+
+        elif data == "start":
+            await msg.edit(
+                START_TXT.format(query.from_user.mention),
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Help Menu", callback_data="help"),
+                            InlineKeyboardButton("Earn Money", callback_data="earn_money")
+                        ],
+                        [
+                            InlineKeyboardButton("Update Channel", url=f"https://t.me/{UPDATE_CHANNEL}"),
+                            InlineKeyboardButton("Support Chat", url=f"https://t.me/{SUPPORT_CHAT}")
+                        ],
+                        [
+                            InlineKeyboardButton("📴 Close", callback_data="delete")
+                        ]
+                    ]
+                )
+            )
+    except Exception as e:
+        # Optionally log or handle errors here
+        print(f"Error processing callback: {e}")
