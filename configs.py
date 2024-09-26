@@ -9,21 +9,22 @@ UPDATES_CHANNEL = genv("UPDATES_CHANNEL", "run_url")
 DATABASE_URL = genv("DATABASE_URL", "mongodb+srv://pabagav476aersmcom:pabagav476aersmcom@cluster0.5jd4dlx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_NAME = genv("DATABASE_NAME", "runurl")
 
-START_TXT = '''Hello {}, I Am Shortner Bot!.
-๏ I can Convert your links to Short links using your API.
+START_TXT = f'''<blockquote><b>Hello {}, I'm Adlinkfly Shortner Bot!.
+๏ I can shorten your links using your {BASE_URL}'s API.
 ๏ Click on the Help Menu button below to get information about my commands.
-๏ Updates - ⁂ @tamilan_botsz'''
+๏ Updates - @{UPDATE_CHANNEL}'''
 
-HELP_TXT = '''Send me any link I will convert it to short link using your API.
+HELP_TXT = f'''<blockquote><b>Send me any link I will shorten it to short link using your API.
 You can share that link and earn money.
-Send /set_shortner to know more - Updates - ⍟ @tamilan_botsz'''
+Send your API KEY along with command /set_api</b></blockquote>'''
 
-ABOUT_TXT = '''╔════❰ TB Shortner Bot ❱═══❍
+ABOUT_TXT = '''<blockquote><b>
+╔════❰ Adlinkfly Shortner Bot ❱═══❍
 ║ ┏━━━━━━━━━❥
-║ ┣ My name -> {}
-║ ┣ My Owner -> @Sharathitsisme & @iSmartBoii_Ujjwal
-║ ┣ Updates -> @tamilan_botsz
-║ ┣ Support -> @tamilanbotsz_support
-║ ┣ ๏ Check help to know more.
+║ ┣ My name  : {}
+║ ┣ My Owner : @{SUPPORT_CHAT}
+║ ┣ Updates  : @{UPDATE_CHANNEL}
+║ ┣ Developer: @StupidBoi69
+║ ┣ ๏๏๏๏๏๏๏๏๏๏
 ║ ┗━━━━━━━━━❥
-╚═════❰ @ ❱═════❍'''
+╚═════❰ @ ❱═════❍</b></blockquote>'''
