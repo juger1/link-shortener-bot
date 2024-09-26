@@ -1,4 +1,4 @@
-from configs import *
+from configs import BASE_URL
 from aiohttp import web
 from shortzy import Shortzy
 import asyncio, logging, aiohttp, traceback
@@ -8,7 +8,7 @@ routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    return web.json_response("TamilanBotsZ")
+    return web.json_response("Bot Developer: @StupidBoi69")
 
 async def web_server():
     web_app = web.Application(client_max_size=30000000)
@@ -29,19 +29,18 @@ async def ping_server():
         except Exception:
             traceback.print_exc()
 
-
 async def short_link(link, uid):
-    usite = await db.get_value("shortner", uid=uid)
-    uapi = await db.get_value("api", uid=uid) 
-    shortzy = Shortzy(api_key=uapi, base_site=usite)
+    user_site = BASE_URL  # Get shortener URL from BASE_URL
+    user_api = await db.get_value("api", uid=uid)  # API key from the user
+    shortzy = Shortzy(api_key=user_api, base_site=user_site)
     return await shortzy.convert_from_text(link)
 
-async def save_data(tst_url, tst_api, uid):
-    shortzy = Shortzy(api_key=tst_api, base_site=tst_url)
-    link=f"https://t.me/iSmartBoii_Ujjwal"
+async def save_data(test_url, test_api, uid):
+    shortzy = Shortzy(api_key=test_api, base_site=test_url)
+    link = f"https://t.me/StupidBoi69"
     short = await shortzy.convert(link)        
     if short.startswith("http"):
-        await db.set_shortner(uid, shortner=tst_url, api=tst_api)
+        await db.set_shortner(uid, shortener=test_url, api=test_api)
         return True
     else:
         return False
