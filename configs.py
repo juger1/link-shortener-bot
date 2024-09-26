@@ -1,25 +1,29 @@
 from os import getenv as genv
 
-API_ID = genv("API_ID", "")
-API_HASH = genv("API_HASH", "")
-BOT_TOKEN = genv("BOT_TOKEN", "")
-BASE_URL = genv("BASE_URL", "")
-SUPPORT_GROUP = genv("SUPPORT_GROUP", "")
-UPDATES_CHANNEL = genv("UPDATES_CHANNEL", "Tamilan_Botsz")
-DATABASE_URL = genv("DATABASE_URL", "")
-START_TXT = '''<b>Hᴇʟʟᴏ {}, I Aᴍ Sʜᴏʀᴛɴᴇʀ Bᴏᴛ!.
-๏ I ᴄᴀɴ Cᴏɴᴠᴇʀᴛ ʏᴏᴜʀ ʟɪɴᴋs ᴛᴏ Sʜᴏʀᴛ ʟɪɴᴋs ᴜsɪɴɢ ʏᴏᴜʀ ᴀᴩɪ.
-๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ Hᴇʟᴩ Mᴇɴᴜ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴄᴏᴍᴍᴀɴᴅs.
-๏ Uᴘᴅᴀᴛᴇs - ⁂ @tamilan_botsz</b>'''
-HELP_TXT = '''Sᴇɴᴅ ᴍᴇ ᴀɴʏ ʟɪɴᴋ ɪ ᴡɪʟʟ ᴄᴏɴᴠᴇʀᴛ ɪᴛ ᴛᴏ sʜᴏʀᴛ ʟɪɴᴋ ᴜsɪɴɢ ʏᴏᴜʀ ᴀᴘɪ
-ʏᴏᴜ ᴄᴀɴ sʜᴀʀᴇ ᴛʜᴀᴛ ʟɪɴᴋ ᴀɴᴅ ᴇᴀʀɴ ᴍᴏɴᴇʏ.
-sᴇɴᴅ /set_shortner ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ - Uᴘᴅᴀᴛᴇs - ⍟ @tamilan_botsz'''
-ABOUT_TXT = '''<b>╔════❰ Tʙ Sʜᴏʀᴛɴᴇʀ Bᴏᴛ ❱═══❍
+API_ID = genv("API_ID", "25695562")
+API_HASH = genv("API_HASH", "0b691c3e86603a7e34aae0b5927d725a")
+BOT_TOKEN = genv("BOT_TOKEN", "7083722060:AAEp1Ec33BYPaHiVNZsTZWoe3U251JtuXsA")
+BASE_URL = genv("BASE_URL", "runurl.in")
+SUPPORT_GROUP = genv("SUPPORT_GROUP", "runurl")
+UPDATES_CHANNEL = genv("UPDATES_CHANNEL", "run_url")
+DATABASE_URL = genv("DATABASE_URL", "mongodb+srv://pabagav476aersmcom:pabagav476aersmcom@cluster0.5jd4dlx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DATABASE_NAME = genv("DATABASE_NAME", "runurl")
+
+START_TXT = '''Hello {}, I Am Shortner Bot!.
+๏ I can Convert your links to Short links using your API.
+๏ Click on the Help Menu button below to get information about my commands.
+๏ Updates - ⁂ @tamilan_botsz'''
+
+HELP_TXT = '''Send me any link I will convert it to short link using your API.
+You can share that link and earn money.
+Send /set_shortner to know more - Updates - ⍟ @tamilan_botsz'''
+
+ABOUT_TXT = '''╔════❰ TB Shortner Bot ❱═══❍
 ║ ┏━━━━━━━━━❥
-║ ┣ Mʏ ɴᴀᴍᴇ -> {}
-║ ┣ Mʏ Oᴡɴᴇʀ -> @Sharathitsisme & @iSmartBoii_Ujjwal
-║ ┣ Uᴘᴅᴀᴛᴇꜱ -> <a href="tg://tamilan_botsz">••Bᴏᴛs••</a>
-║ ┣ 𝖲ᴜᴘᴘᴏʀᴛ -> <a href="tg://tamilanbotsz_support"> Bᴏᴛs Sᴜᴩᴩᴏʀᴛ</a>
-║ ┣ ๏ Cʜᴇᴄᴋ ʜᴇʟᴘ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ.
+║ ┣ My name -> {}
+║ ┣ My Owner -> @Sharathitsisme & @iSmartBoii_Ujjwal
+║ ┣ Updates -> @tamilan_botsz
+║ ┣ Support -> @tamilanbotsz_support
+║ ┣ ๏ Check help to know more.
 ║ ┗━━━━━━━━━❥
-╚═════❰ @ ❱═════❍</b>'''
+╚═════❰ @ ❱═════❍'''
