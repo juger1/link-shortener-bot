@@ -51,7 +51,11 @@ async def save_shortlink(c: Client, m):
         f"<b>API Key Has Been Set Successfully!\n\nShortener URL - https://{BASE_URL}\nShortner API - {api_key}</b>"
     )
 
-
+@Client.on_message(filters.command('me') & filters.private)
+async def me(c: Client, m):
+    await m.reply_text(
+        f"<b>API Key Has Been Set Successfully!\n\nShortener URL - https://{BASE_URL}\nShortner API - {api_key}</b>"
+    )
 @Client.on_message(filters.text & filters.private)
 async def shorten_link(c: Client, m):
     txt = m.text
