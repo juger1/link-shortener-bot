@@ -51,11 +51,21 @@ async def save_shortlink(c: Client, m):
         f"<b>API Key Has Been Set Successfully!\n\nShortener URL - https://{BASE_URL}\nShortner API - {api_key}</b>"
     )
 
+
 @Client.on_message(filters.command('me') & filters.private)
 async def me(c: Client, m):
-    await m.reply_text(
-        f"<b>API Key Has Been Set Successfully!\n\nShortener URL - https://{BASE_URL}\nShortner API - {api_key}</b>"
-    )
+    usr = m.from_user
+    # Fetch the API key from the database
+    api_key = await db.get_value('api', usr.id)
+    
+    if api_key:
+        await m.reply_text(
+            f"<b>Your API Key:\n\nShortener API - {api_key}\nShortener URL - {BASE_URL}</b>"
+        )
+    else:
+        await m.reply_text("<b>You have not set an API key yet. Use /set_api to set it.</b>")
+        
+
 @Client.on_message(filters.text & filters.private)
 async def shorten_link(c: Client, m):
     txt = m.text
@@ -64,9 +74,16 @@ async def shorten_link(c: Client, m):
         return
 
     usr = m.from_user
+    api_key = await db.get_value('api', usr.id)  # Fetch the API key from the database
+
+    if not api_key:
+        await m.reply_text("<b>You haven't set an API key yet. Use /set_api to set your API key first.</b>")
+        return
+
     try:
-        short = await short_link(link=txt, uid=usr.id)
+        short = await short_link(link=txt, uid=usr.id)  # Shorten the link using the saved API key
         msg = f"<b>Here are your Short Links:\n\n<code>{short}</code></b>"
         await m.reply_text(msg)
     except Exception as e:
         await m.reply_text(f"Error shortening link: {e}")
+        
